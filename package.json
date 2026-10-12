@@ -1,0 +1,41 @@
+{
+  "name": "agental-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
+    "check": "npm run lint && npm run typecheck",
+    "db:push": "supabase db push",
+    "db:seed": "psql \"$SUPABASE_DB_URL\" -v ON_ERROR_STOP=1 -f supabase/seed.sql",
+    "db:types": "supabase gen types typescript --linked --schema public > src/lib/supabase/database.types.ts"
+  },
+  "dependencies": {
+    "@fontsource-variable/big-shoulders-display": "^5.3.0",
+    "@fontsource-variable/hanken-grotesk": "^5.3.0",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.117.3",
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "description": "Agental \u2014 AI-augmented artist agency: website, member spaces and Supabase-powered insights.",
+  "engines": {
+    "node": ">=20.9"
+  }
+}

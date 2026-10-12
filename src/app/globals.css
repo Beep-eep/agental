@@ -1,0 +1,291 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Agental design tokens
+   Stage indigo + tungsten spot: the two colours of a set at call time.
+   --------------------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+  --ink: #17132e;
+  --ink-2: #2a2450;
+  --muted: #5e5a78;
+  --faint: #8b88a3;
+  --paper: #f4f5f9;
+  --card: #ffffff;
+  --line: #dfe0ea;
+  --line-strong: #c6c7d6;
+  --tungsten: #f5b53f;
+  --tungsten-deep: #c98a12;
+  --cue: #4c3fd6;
+  --cue-soft: #ecebfc;
+  --good: #006300;
+  --good-mark: #0ca30c;
+  --warn-mark: #fab219;
+  --critical: #d03b3b;
+
+  /* data-viz roles (validated categorical order, light surface) */
+  --viz-surface: #fcfcfb;
+  --viz-grid: #e1e0d9;
+  --viz-axis: #c3c2b7;
+  --viz-muted: #898781;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --series-6: #008300;
+  --series-7: #6250d6;
+  --series-8: #e34948;
+  --seq-250: #86b6ef;
+  --seq-350: #5598e7;
+  --seq-450: #2a78d6;
+  --seq-550: #1c5cab;
+  --seq-650: #104281;
+  --seq-100: #cde2fb;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-tungsten: var(--tungsten);
+  --color-tungsten-deep: var(--tungsten-deep);
+  --color-cue: var(--cue);
+  --color-cue-soft: var(--cue-soft);
+  --color-good: var(--good);
+  --color-critical: var(--critical);
+  --font-display: "Big Shoulders Display Variable", "Arial Narrow", sans-serif;
+  --font-sans: "Hanken Grotesk Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@layer base {
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+}
+
+@layer components {
+/* Type scale (major third, 16px base) */
+.t-hero {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 8.5vw, 6.6rem);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+}
+.t-h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 0.95;
+}
+.t-h2 {
+  font-family: var(--font-display);
+  font-weight: 750;
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  line-height: 1;
+}
+.t-h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.55rem;
+  line-height: 1.05;
+}
+.t-lead {
+  font-size: 1.2rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.t-small {
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.prose-measure {
+  max-width: 64ch;
+}
+
+/* Focus that is always visible */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--cue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0 1.15rem;
+  border-radius: 999px;
+  font-weight: 650;
+  font-size: 0.95rem;
+  transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+  white-space: nowrap;
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btn-spot {
+  background: var(--tungsten);
+  color: var(--ink);
+}
+.btn-spot:hover {
+  background: #f8c25e;
+}
+.btn-ink {
+  background: var(--ink);
+  color: #fff;
+}
+.btn-ink:hover {
+  background: var(--ink-2);
+}
+.btn-line {
+  border: 1.5px solid var(--line-strong);
+  color: var(--ink);
+  background: var(--card);
+}
+.btn-line:hover {
+  border-color: var(--ink);
+}
+.btn-sm {
+  min-height: 2.1rem;
+  padding: 0 0.85rem;
+  font-size: 0.85rem;
+}
+
+/* Forms */
+.field-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+}
+.field-hint {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+.input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.8rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 1rem;
+}
+.input:focus {
+  border-color: var(--cue);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--cue-soft);
+}
+textarea.input {
+  min-height: 6rem;
+}
+
+/* Choice chips (checkbox / radio styled as toggles) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.4rem;
+  padding: 0 0.9rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+}
+.chip:has(input:checked) {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+.chip:has(input:focus-visible) {
+  outline: 2px solid var(--cue);
+  outline-offset: 2px;
+}
+.chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Panels: used sparingly, for things that are genuinely objects */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+/* The call-sheet slip (hero signature) */
+.slip {
+  background: var(--card);
+  border-radius: 6px 6px 18px 18px;
+  box-shadow: 0 1px 0 var(--line), 0 24px 48px -28px rgba(23, 19, 46, 0.45);
+}
+.slip-perf {
+  border-top: 2px dashed var(--line-strong);
+  position: relative;
+}
+.slip-perf::before,
+.slip-perf::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+.slip-perf::before {
+  left: -10px;
+}
+.slip-perf::after {
+  right: -10px;
+}
+
+/* Status dot + label (never colour alone) */
+.status-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  display: inline-block;
+  flex: none;
+}
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
