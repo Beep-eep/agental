@@ -41,12 +41,11 @@ This repository rebuilds the public site at agental.co/en/talents from scratch, 
 ## Quick start
 
 ```bash
-npm install
-cp .env.example .env.local      # fill in your Supabase URL + publishable key
-npm run dev                     # http://localhost:3000
+npm install     # downloads the libraries listed in package.json (first time only)
+npm run dev     # starts the site at http://localhost:3000
 ```
 
-If you leave the environment variables empty, the marketing pages still render with built-in catalog data. Member areas need Supabase.
+`npm run dev` checks your Node.js version and, if `.env.local` is missing, creates it from `.env.example`. That file already points at the shared `agental-demo` Supabase project, so there's nothing to configure for a demo.
 
 ### Set up Supabase (new project)
 
